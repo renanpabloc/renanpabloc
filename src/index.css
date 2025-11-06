@@ -1,0 +1,352 @@
+/* ======================================
+   IMPORTS
+====================================== */
+
+/* Fonte Brat simulada: Arial Narrow expandida */
+@import url("https://fonts.googleapis.com/css2?family=Arial+Narrow&display=swap");
+
+@import "tailwindcss";
+
+/* ======================================
+   VARIÁVEIS E THEME
+====================================== */
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 540px;
+  --breakpoint-md: 720px;
+  --breakpoint-lg: 1200px;
+  --breakpoint-xl: 1640px;
+  --breakpoint-2xl: 1640px;
+  --color-primary: #0f6695;
+  --color-secondary: #2e96d3;
+  --color-tertiary: #122a3d;
+  --drop-shadow-custom: 0px 3px 5px rgba(0, 0, 0, 0.6);
+}
+
+@utility container {
+  margin-inline: auto;
+}
+
+* {
+  box-sizing: border-box;
+  --type-first: "Brat", "Arial Narrow", Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  timeline-scope: --section, --main;
+}
+
+body::-webkit-scrollbar {
+  width: 4px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #838383;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  border-radius: 10px;
+}
+
+body {
+  margin: 0;
+  color: #000;
+  font-family: var(--type-first);
+  background-color: #000000;
+  overflow-x: hidden;
+}
+
+/* ======================================
+   TÍTULO ESTILO “BRAT”
+====================================== */
+.brattitle-verde {
+  font-family: var(--type-first);
+  font-weight: normal;
+  transform: scaleX(1.4); /* estica horizontalmente como na capa */
+  transform: scaleY(1.5);
+  letter-spacing: -0.02em; /* ajuste fino do espaçamento */
+  text-transform: uppercase; /* caso queira o efeito da capa */
+  color: #B4D538; /* ou a cor que desejar */
+}
+
+.brattitle-branco {
+  font-family: var(--type-first);
+  font-weight: normal;
+  transform: scaleX(1.4); /* estica horizontalmente como na capa */
+  letter-spacing: -0.02em; /* ajuste fino do espaçamento */
+  text-transform: uppercase; /* caso queira o efeito da capa */
+  color: #F0F0F0; /* ou a cor que desejar */
+}
+
+.brattitle-cinza {
+  font-family: var(--type-first);
+  font-weight: normal;
+  transform: scaleX(1.4); /* estica horizontalmente como na capa */
+  transform: scaleY(1.8);
+  letter-spacing: -0.02em; /* ajuste fino do espaçamento */
+  text-transform: uppercase; /* caso queira o efeito da capa */
+  color: #000000; /* ou a cor que desejar */
+}
+
+/* ======================================
+   ANIMAÇÃO SIMPLES DE ENTRADA
+====================================== */
+.animeLeft {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: animeLeft 0.3s forwards;
+}
+
+@keyframes animeLeft {
+  to {
+    opacity: 1;
+    transform: initial;
+  }
+}
+
+
+/* ======================================
+   SECTIONS BASE STYLE + GRAIN PATTERNS
+====================================== */
+
+/* Cada section ocupa 100% da altura da tela */
+.section-fullscreen {
+  height: 100dvh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+  view-timeline: --section;
+}
+
+.section-green-dark {
+  background-color: #222326;
+  color: #F0F0F0;
+  position: relative;
+  overflow: hidden;
+  background-image: url("/bg/bg.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: overlay; /* mistura a cor de fundo com a textura */
+  background-attachment: fixed; /* opcional — dá efeito de profundidade */
+}
+
+/* Fundo verde escuro com overlay */
+.section-background-green-dark {
+  background-color: #222326;
+  color: #F0F0F0;
+  position: relative;
+  overflow: hidden;
+  background-image: url("/bg/bg.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: overlay; /* mistura a cor de fundo com a textura */
+  background-attachment: fixed; /* opcional — dá efeito de profundidade */
+}
+
+/* Fundo cinza claro com overlay */
+.section-background-gray-light {
+  background-color: #B4D538;
+  color: #F0F0F0;
+  position: relative;
+  overflow: hidden;
+  background-image: url("/bg/bg2.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: overlay;
+  background-attachment: fixed;
+}
+
+
+/* Ajustes responsivos */
+@media (max-width: 640px) {
+  .section-fullscreen {
+    padding: 3rem 1.5rem;
+  }
+}
+
+.visible {
+  opacity: 1;
+}
+.verde {
+  color: #B4D538;
+}
+
+.branco {
+  color: #F0F0F0;
+}
+
+.cinza {
+  color: #222326;
+}
+/* ======================================
+   VIEW TIMELINES + SCROLL ANIMATIONS
+====================================== */
+
+main {
+  view-timeline: --main;
+}
+
+.section-content {
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: sectionFade 2.8s ease-in-out both; /* mais lento */
+  animation-timeline: --section;
+}
+
+/* Transição mais lenta e fluida */
+@keyframes sectionFade {
+  0%, 100% {
+    opacity: 0;
+    filter: blur(1.5rem) contrast(3);
+    transform: translateY(8%) scale(1.05);
+    visibility: hidden;
+  }
+
+  50% {
+    opacity: 1;
+    filter: blur(0) contrast(1);
+    transform: translateY(0) scale(1);
+    visibility: visible;
+  }
+}
+
+html, body {
+  overscroll-behavior: contain;
+  transition: background 1s ease-in-out;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px; /* Desktop */
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 900px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+
+/* Celulares grandes */
+@media (max-width: 768px) {
+  .container {
+    max-width: 600px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+  .container {
+    max-width: 100%; /* ocupa toda a tela */
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+/* NAVBAR////////////////////////////////// */
+
+.header_container {
+  max-width: 1200px;
+  height: 71px;
+  background-color: rgba(105, 105, 105, 0.246);
+  text-align: center;
+  position: fixed; /* alterado de absolute para fixed */
+  top: 7%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50px;
+  filter: blur(10px);
+  backdrop-filter: blur(20px);
+  -webkit-filter: blur(0.1px);
+  border: 0.0001px solid #c1c0c055;
+  z-index: 1000; /* garantir que fique acima das sections */
+}
+
+.logo_part1 {
+  color: #c3c2c2;
+  font-family: oswald;
+  font-size: 12px;
+  font-weight: lighter;
+  width: 150px;
+  text-align: center;
+  letter-spacing: 2px;
+  padding-top: 5px;
+}
+
+.nav_bar {
+  color: #fff;
+  font-family: Montserrat;
+  font-size: 13px;
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav_bar li a:active,
+.nav_bar li a:hover {
+  color: #D3B89A;
+}
+
+.nav_bar_signup {
+  display: flex;
+  gap: 12px;
+}
+
+.nav_bar_button {
+  padding: 10px 5px;
+  width: 90px;
+  border-radius: 50px;
+  background-color: rgba(215, 215, 215, 0.197);
+  border: 0.0001px solid rgba(255, 255, 255, 0.333);
+  color: #fff;
+  font-family: Montserrat;
+  cursor: pointer;
+}
+
+.nav_bar_button1 {
+  width: 90px;
+  border-radius: 50px;
+  background-color: #8C9B81;
+  border: 0.0001px solid #c3c2c2;
+  color: #111;
+  font-size: 14px;
+  font-family: Montserrat;
+  font-weight: 700;
+  cursor: pointer;
+}
+/* Para destaque extra do vidro acinzentado */
+.backdrop-blur-md {
+  backdrop-filter: blur(15px);
+  background-color: rgba(40, 40, 40, 0.5); /* mais acinzentado */
+}
+
+.transition-transform {
+  transition-property: transform;
+}
